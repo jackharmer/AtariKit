@@ -145,7 +145,7 @@ public class Environment {
         var isDirectory : ObjCBool = false
         if FileManager.default.fileExists(atPath: folderURL.absoluteString, isDirectory: &isDirectory) {
             #if os(Linux)
-                if isDirectory { return }
+                if isDirectory.boolValue { return }
             #else
                 if isDirectory.boolValue { return }
             #endif
