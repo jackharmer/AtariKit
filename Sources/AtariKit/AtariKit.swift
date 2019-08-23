@@ -102,6 +102,21 @@ public class Environment {
         return arrayOfActions.flatMap { EnvironmentAction(rawValue: $0) }
     }
     
+    /// Return array of minimum available `EnvironmentAction` for loaded rom.
+    public func minimalActions() -> [EnvironmentAction] {
+        let count = Int(CALE.getMinimalActionSize(aleInterface))
+        
+        let actions = UnsafeMutablePointer<Int32>.allocate(capacity: count)
+        actions.initialize(to: 0)
+        
+        CALE.getMinimalActionSet(aleInterface, actions)
+        let buffer = UnsafeBufferPointer(start: actions, count: count)
+        let arrayOfActions = Array(buffer)
+        actions.deinitialize()
+        
+        return arrayOfActions.flatMap { EnvironmentAction(rawValue: $0) }
+    }
+    
     /// Reset game in `Environment`
     public func reset() {
         CALE.reset_game(aleInterface)
