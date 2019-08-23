@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CALE",
+        "repositoryURL": "https://github.com/Octadero/CALE.git",
+        "state": {
+          "branch": null,
+          "revision": "1fceb14062a3a5cb8ded07908ca104bcd0b29e07",
+          "version": "0.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

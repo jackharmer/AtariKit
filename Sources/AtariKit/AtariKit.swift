@@ -1,5 +1,6 @@
 import CALE
 import Foundation
+import TensorFlow
 
 typealias ALEInterface = OpaquePointer
 
@@ -139,7 +140,7 @@ public class Environment {
     public func screenRGBImage() -> ShapedArray<UInt8> {
         getScreenRGB(aleInterface, bufferPointer)
         let buffer = UnsafeBufferPointer(start: bufferPointer, count: pixelsCount)
-        return ShapedArray(shape: [Int](CALE.getScreenWidth(aleInterface),CALE.getScreenHeight(aleInterface),3], scalars: buffer)
+        return ShapedArray(shape: [Int](arrayLiteral: Int(CALE.getScreenWidth(aleInterface)),Int(CALE.getScreenHeight(aleInterface)),3), scalars: buffer)
     }
 
     /// Draw and return RGB screen UnsafeMutablePointer
