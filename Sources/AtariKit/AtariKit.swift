@@ -135,6 +135,12 @@ public class Environment {
         let rgbBites = Array(buffer)
         return rgbBites
     }
+    
+    public func screenRGBImage() -> ShapedArray<UInt8> {
+        getScreenRGB(aleInterface, bufferPointer)
+        let buffer = UnsafeBufferPointer(start: bufferPointer, count: pixelsCount)
+        return ShapedArray(shape: [Int](CALE.getScreenWidth(aleInterface),CALE.getScreenHeight(aleInterface),3], scalars: buffer)
+    }
 
     /// Draw and return RGB screen UnsafeMutablePointer
     public func screenRGBBuffer() -> (pointer: UnsafeMutablePointer<UInt8>, pixelsCount: Int) {
